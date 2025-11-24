@@ -1,46 +1,33 @@
 # lightningjs
 
-### lightningjs
+### Simple Notes (LightningJS + Blits)
 
+A minimal notes app with local persistence and the Ocean Professional theme.
 
-Welcome to the _lightningjs_ Lightning 3 Blits App!
+Features:
+- Create, view, edit, and delete notes
+- Search and filter by title/content
+- Sort by last updated (desc)
+- Local persistence via localStorage (key: `notes-app-data`)
+- Keyboard shortcuts: 
+  - Ctrl/Cmd + N: New note
+  - Ctrl/Cmd + S: Save (when editing)
 
-### Getting started
+Theme:
+- Ocean Professional colors: primary #2563EB, secondary #F59E0B, success #F59E0B, error #EF4444, background #f9fafb, surface #ffffff, text #111827
+- Rounded corners, subtle shadows, smooth transitions
 
-Follow the steps below to get your Lightning 3 Blits App up and running in no time.
-
-#### IDE setup
-
-It is highly recommended to install the Blits [VS-code extension](https://marketplace.visualstudio.com/items?itemName=LightningJS.lightning-blits) which will give you template highlighting and improved autocompletion.
-
-#### Project setup
-
-Run the following command to install the dependencies of your App:
-
+Run locally:
 ```sh
+cd frontend
 npm install
-```
-
-#### Build and run in development mode
-
-Run your App in development mode:
-
-```sh
 npm run dev
+# open the provided URL (port 3000)
 ```
 
-This command uses Vite to fire up a local server, with Hot Reloading support. Visit the provided link in your web browser to see the App in action.
-
-#### Build the App for production
-
-Create an optimized and minified version of your App:
-
-```sh
-npm run build
-```
-
-This will create a production version of the app in the `dist` folder.
-
+Notes:
+- Data is kept in memory and synced to localStorage.
+- No backend is required; VITE_* envs are unused but can be integrated later.
 
 ### Resources
 
