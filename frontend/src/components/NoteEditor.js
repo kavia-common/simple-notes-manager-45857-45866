@@ -4,9 +4,7 @@ import { theme, radius, elevation } from '../styles/theme.js'
 export default Blits.Component('NoteEditor', {
   props: ['note', 'editing', 'onEdit', 'onSave', 'onCancel', 'onDelete'],
   template: `
-    <Element w="1300" h="980" x="600" :color="$surface" :effects="[$shader('radius', {radius: ${radius.lg}}), $shader('boxshadow', ${JSON.stringify(
-      elevation.md
-    )})]">
+    <Element w="1300" h="980" x="600" :color="$surface" :effects="$editorEffects">
       <Element x="24" y="24" w="1252" h="80">
         <Text size="26" :color="$muted" content="Title" />
         <Text y="36" size="32" :color="$text" :content="$titleDisplay" />
@@ -18,17 +16,17 @@ export default Blits.Component('NoteEditor', {
       </Element>
 
       <Element x="24" y="860" w="1252" h="96">
-        <Element w="180" h="56" :color="$editColor" :effects="[$shader('radius', {radius: ${radius.md}})]">
-          <Text x="90" y="14" mount="{x:0.5}" size="24" color="#fff" :content="$editText" />
+        <Element w="180" h="56" :color="$editColor" :effects="$btnRadiusEffect">
+          <Text x="90" y="14" :mount="{x: $mountX}" size="24" color="#fff" :content="$editText" />
         </Element>
-        <Element x="200" w="180" h="56" :color="$saveColor" :alpha="$saveAlpha" :effects="[$shader('radius', {radius: ${radius.md}})]">
-          <Text x="90" y="14" mount="{x:0.5}" size="24" color="#fff" content="Save" />
+        <Element x="200" w="180" h="56" :color="$saveColor" :alpha="$saveAlpha" :effects="$btnRadiusEffect">
+          <Text x="90" y="14" :mount="{x: $mountX}" size="24" color="#fff" content="Save" />
         </Element>
-        <Element x="400" w="180" h="56" :color="$cancelColor" :alpha="$cancelAlpha" :effects="[$shader('radius', {radius: ${radius.md}})]">
-          <Text x="90" y="14" mount="{x:0.5}" size="24" color="#fff" content="Cancel" />
+        <Element x="400" w="180" h="56" :color="$cancelColor" :alpha="$cancelAlpha" :effects="$btnRadiusEffect">
+          <Text x="90" y="14" :mount="{x: $mountX}" size="24" color="#fff" content="Cancel" />
         </Element>
-        <Element :x="1252 - 180" w="180" h="56" :color="$deleteColor" :effects="[$shader('radius', {radius: ${radius.md}})]">
-          <Text x="90" y="14" mount="{x:0.5}" size="24" color="#fff" content="Delete" />
+        <Element :x="1252 - 180" w="180" h="56" :color="$deleteColor" :effects="$btnRadiusEffect">
+          <Text x="90" y="14" :mount="{x: $mountX}" size="24" color="#fff" content="Delete" />
         </Element>
       </Element>
     </Element>
@@ -51,6 +49,13 @@ export default Blits.Component('NoteEditor', {
       cancelColor: '#6b7280',
       cancelAlpha: this.editing ? 1 : 0.4,
       deleteColor: theme.error,
+      // Precomputed effects and mounts
+      editorEffects: [
+        this.$shader('radius', { radius: radius.lg }),
+        this.$shader('boxshadow', elevation.md),
+      ],
+      btnRadiusEffect: [this.$shader('radius', { radius: radius.md })],
+      mountX: 0.5,
     }
   },
   watch: {
